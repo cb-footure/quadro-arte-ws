@@ -190,7 +190,7 @@ if choice == 'Plotagem campinho':
       # ax.annotate('@LeituradoJogo',xy=(92,102),fontsize=15,color='white')
       #ax.annotate('Dados via WyScout',xy=(0,102),fontsize=15,color='white')
      plt.savefig(f'calor_{nome_jogador}.jpg',quality=95,bbox_inches='tight',facecolor=cor_fundo)
-     plt.savefig(f'Artes/Heatmap/calor_{nome_jogador}.jpg',quality=95,bbox_inches='tight',facecolor=cor_fundo)
+#      plt.savefig(f'calor_{nome_jogador}.jpg',quality=95,bbox_inches='tight',facecolor=cor_fundo)
         
      plt.show()
      st.pyplot(fig)
@@ -266,7 +266,7 @@ if choice == 'Plotagem campinho':
     
      plot_scatter_df(key_pass,'#FEA300',9)
      plot_scatter_df(assist,'#00FF79',12)
-     plt.savefig(f'content/assist_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
+     plt.savefig(f'assist_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
      plt.show()
      st.pyplot(fig)
     #  return fig
@@ -344,7 +344,7 @@ if choice == 'Plotagem campinho':
       
      plot_scatter_df(progressivo_certo,'#00FF79',12)
      plot_scatter_df(progressivo_errado,'#FD2B2C',9)
-     plt.savefig(f'content/progressivo_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
+     plt.savefig(f'progressivo_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
 
      plt.show()
      st.pyplot(fig)
@@ -436,7 +436,7 @@ if choice == 'Plotagem campinho':
 
       
     
-    plt.savefig(f'content/defensivo_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
+    plt.savefig(f'defensivo_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
 
     plt.show()
     st.pyplot(fig)
@@ -525,7 +525,7 @@ if choice == 'Plotagem campinho':
       # plt.scatter(x=49,y=60,color='#FD2B2C',zorder=40,s=300)
      plt.rc('font', family='Helvetica')
 
-     plt.savefig(f'content/cruzamento_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
+     plt.savefig(f'cruzamento_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
      plt.show()
      st.pyplot(fig)
     #  return fig
@@ -582,7 +582,7 @@ if choice == 'Plotagem campinho':
     cmap = LinearSegmentedColormap.from_list('name', [cor_fundo, '#F43B87'])
 
     plt.hist2d(x,y, bins=[np.arange(0, 110, 10), np.arange(0, 110, 10)], cmap=cmap)
-    plt.savefig(f'content/recepção_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
+    plt.savefig(f'recepção_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
     plt.show()
     st.pyplot(fig)
     # return fig
@@ -654,7 +654,7 @@ if choice == 'Plotagem campinho':
     
     plot_scatter_df(passe_certo,'#00FF79',12)
     plot_scatter_df(passe_errado,'#FD2B2C',9)
-    plt.savefig(f'content/passe_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
+    plt.savefig(f'passe_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
 
     plt.show()
     st.pyplot(fig)
@@ -766,7 +766,7 @@ if choice == 'Plotagem campinho':
       df = (df_plot[df_plot['cluster'] == clus].reset_index())
       df['cor'] = cor 
       plot_scatter_df(df,cor,2)
-    plt.savefig(f'content/cluster_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
+    plt.savefig(f'cluster_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
     plt.show()
     st.pyplot(fig)
     # return fig
@@ -883,7 +883,7 @@ if choice == 'Plotagem campinho':
     # plt.scatter(48, 45, marker='s', s=300, color='#FFC000',label='bloqueado',zorder=zo+1)
     # plt.scatter(48, 60, marker='p', s=300, color='#8B0FFF',label='trave',zorder=zo+1)
 
-    plt.savefig(f'content/xg_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
+    plt.savefig(f'xg_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
 
     plt.show()
     st.pyplot(fig)
@@ -1057,13 +1057,13 @@ if choice == 'Plotagem campinho':
         cruzamentos_certos_porcentagem = 0
 
       
-      recepção = f'content/recepção_{jogador}.png'
-      assist =  f'content/assist_{jogador}.png'
-      xg =  f'content/xg_{jogador}.png'
-      defensivo = f'content/defensivo_{jogador}.png'
-      passes_progressivos = f'content/progressivo_{jogador}.png'
-      passes_cluster = f'content/cluster_{jogador}.png'
-      cruzamento = f"content/cruzamento_{jogador}.png"
+      recepção = f'recepção_{jogador}.png'
+      assist =  f'assist_{jogador}.png'
+      xg =  f'xg_{jogador}.png'
+      defensivo = f'defensivo_{jogador}.png'
+      passes_progressivos = f'progressivo_{jogador}.png'
+      passes_cluster = f'cluster_{jogador}.png'
+      cruzamento = f"cruzamento_{jogador}.png"
 
       arte = Image.new('RGB', (6419,4542), '#2C2B2B')
       W,H  = arte.size
