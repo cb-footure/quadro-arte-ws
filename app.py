@@ -279,6 +279,8 @@ if choice == 'Plotagem campinho':
      plt.savefig(f'assist_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
      plt.show()
      st.pyplot(fig)
+      
+     st.markdown(get_binary_file_downloader_html(f'assist_{nome_jogador}.png', 'Assist'), unsafe_allow_html=True)
     #  return fig
     #----------------------------------------------------------------------------
    def progressivo(cor_fundo='#2c2b2b'):
@@ -358,7 +360,7 @@ if choice == 'Plotagem campinho':
 
      plt.show()
      st.pyplot(fig)
-
+     st.markdown(get_binary_file_downloader_html(f'progressivo_{nome_jogador}.png', 'Progressivo'), unsafe_allow_html=True)
 
     #---------------------------------------------------------------------------
    def defensivo(cor_fundo='#2c2b2b'):
@@ -450,6 +452,7 @@ if choice == 'Plotagem campinho':
 
     plt.show()
     st.pyplot(fig)
+    st.markdown(get_binary_file_downloader_html(f'defensivo_{nome_jogador}.png', 'Defensivo'), unsafe_allow_html=True)
     # return fig
     #-------------------------------------------------------------------------
    def cruzamento(cor_fundo='#2c2b2b'):
@@ -538,6 +541,7 @@ if choice == 'Plotagem campinho':
      plt.savefig(f'cruzamento_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
      plt.show()
      st.pyplot(fig)
+     st.markdown(get_binary_file_downloader_html(f'cruzamento_{nome_jogador}.png', 'Cruzamento'), unsafe_allow_html=True)
     #  return fig
     #-------------------------------------------------------------------------
    def recepção(cor_fundo='#2C2B2B'):
@@ -595,6 +599,7 @@ if choice == 'Plotagem campinho':
     plt.savefig(f'recepção_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
     plt.show()
     st.pyplot(fig)
+    st.markdown(get_binary_file_downloader_html(f'recepção_{nome_jogador}.png', 'Recepções'), unsafe_allow_html=True)
     # return fig
         #----------------------------------------------------------------------------------------
    def passe_plot(cor_fundo='#2C2B2B'):
@@ -668,6 +673,7 @@ if choice == 'Plotagem campinho':
 
     plt.show()
     st.pyplot(fig)
+    st.markdown(get_binary_file_downloader_html(f'passe_{nome_jogador}.png', 'Passe'), unsafe_allow_html=True)
     # return fig
             #-------------------------------------------------------------------------------------------------------
    def cluster(cor_fundo='#2C2B2B'):
@@ -779,6 +785,7 @@ if choice == 'Plotagem campinho':
     plt.savefig(f'cluster_{nome_jogador}.png',dpi=300,bbox_inches = "tight",facecolor=cor_fundo)
     plt.show()
     st.pyplot(fig)
+    st.markdown(get_binary_file_downloader_html(f'cluster_{nome_jogador}.png', 'Cluster'), unsafe_allow_html=True)
     # return fig
               #-----------------------------------------------------------------------------------------------
    def xg(cor_fundo='#2c2b2b'):
@@ -897,6 +904,7 @@ if choice == 'Plotagem campinho':
 
     plt.show()
     st.pyplot(fig)
+    st.markdown(get_binary_file_downloader_html(f'xg_{nome_jogador}.png', 'xg'), unsafe_allow_html=True)
     # return fig
 
    info_jogador  = info_jogador.replace(to_replace=['RW','LW','RWF','LWF','LAMF','RAMF'],value='Extremo')
@@ -2023,11 +2031,13 @@ if choice == 'Plotagem campinho':
 
 
       quadro_posicoes(info_jogador)
+      st.markdown(get_binary_file_downloader_html(f'quadro_{jogador}.png', 'Quadro'), unsafe_allow_html=True)
       opcao_invertido=st.checkbox('Deseja Inverter',value=False)
       if opcao_invertido == True:
         arte = PIL.ImageOps.invert(arte)
         arte.save(f'quadro-invertido_{jogador}.png',quality=95,bbox_inches = "tight",facecolor=color)
         st.image(f'quadro-invertido_{jogador}.png')
+        st.markdown(get_binary_file_downloader_html(f'quadro-invertido_{jogador}.png', 'Quadro'), unsafe_allow_html=True)
 
 
 if choice == 'Quadro de stats jogador por time':
