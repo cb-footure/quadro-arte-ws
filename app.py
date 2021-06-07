@@ -34,6 +34,7 @@ from sklearn.metrics.pairwise import paired_euclidean_distances
 import numpy as np
 from sklearn.preprocessing import StandardScaler 
 import base64
+import os
 #------------------------------------------------------------------------------------------------------- 
 st.title('Footure Plot')
 menu=['Plotagem campinho','Quadro de stats jogador por time']
@@ -44,7 +45,6 @@ if choice == 'Plotagem campinho':
    to=st.text_input('To (2021-12-31)')
    player=st.text_input('ID jogador')
    
-   import os
    def get_binary_file_downloader_html(bin_file, file_label='File'):
        with open(bin_file, 'rb') as f:
            data = f.read()
