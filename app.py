@@ -33,6 +33,7 @@ from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.metrics.pairwise import paired_euclidean_distances
 import numpy as np
 from sklearn.preprocessing import StandardScaler 
+import base64
 #------------------------------------------------------------------------------------------------------- 
 st.title('Footure Plot')
 menu=['Plotagem campinho','Quadro de stats jogador por time']
@@ -42,6 +43,14 @@ if choice == 'Plotagem campinho':
    fr=st.text_input('From (2021-01-01)')
    to=st.text_input('To (2021-12-31)')
    player=st.text_input('ID jogador')
+   
+   import os
+   def get_binary_file_downloader_html(bin_file, file_label='File'):
+       with open(bin_file, 'rb') as f:
+           data = f.read()
+       bin_str = base64.b64encode(data).decode()
+       href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Download {file_label}</a>'
+       return href
    
    headers = {'Accept': '*/*','Accept-Encoding': 'gzip, deflate, br',
   'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
@@ -194,6 +203,7 @@ if choice == 'Plotagem campinho':
         
      plt.show()
      st.pyplot(fig)
+     st.markdown(get_binary_file_downloader_html(f'calor_{nome_jogador}.jpg', 'Heatmap'), unsafe_allow_html=True)
    
    #-----------------------------------------------------------------------------
    def assist(cor_fundo='#2c2b2b'):
