@@ -981,7 +981,7 @@ if choice == 'Plotagem campinho':
       jogador = nome_jogador
       clube = info_jogador['current_team_name'][0]    
       campeonato = st.text_input('Digite o nome do campeonato, caso tenha mais de um coloque todas')
-      temporada= df_jogador['match_seasonName'][0]
+      temporada= st.text_input('Digite a temporada')
       minutos_em_campo = minutos_df['Minutos em campo'][0].astype('int')
       space=st.number_input('Digite um número de espaçamento entre 800 e 1400')
 
