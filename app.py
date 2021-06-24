@@ -431,9 +431,9 @@ if choice == 'Plotagem campinho':
 
     zo =12
     cor_ponto = 'black'
-    defense = df_tipo[(np.abs(stats.zscore(df_tipo[['x','y']])) < .5)]
-    defpoints = defense[['x','y']].values
-    hull = ConvexHull(defense[['x','y']])
+#     defense = df_tipo[(np.abs(stats.zscore(df_tipo[['x','y']])) < .5)]
+#     defpoints = defense[['x','y']].values
+#     hull = ConvexHull(defense[['x','y']])
 
 
     def plot_scatter_df(df,cor,adjust=False):
