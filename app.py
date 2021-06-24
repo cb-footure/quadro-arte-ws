@@ -431,9 +431,9 @@ if choice == 'Plotagem campinho':
 
     zo =12
     cor_ponto = 'black'
-#     defense = df_tipo[(np.abs(stats.zscore(df_tipo[['x','y']])) < .5)]
-#     defpoints = defense[['x','y']].values
-#     hull = ConvexHull(defense[['x','y']])
+    defense = df_tipo[(np.abs(stats.zscore(df_tipo[['x','y']])) < .5)]
+    defpoints = defense[['x','y']].values
+    hull = ConvexHull(defense[['x','y']])
 
 
     def plot_scatter_df(df,cor,adjust=False):
@@ -443,7 +443,7 @@ if choice == 'Plotagem campinho':
             #Draw a black line between each
                 plt.plot(defpoints[simplex, 0], defpoints[simplex, 1], 'r-',color=cor)
             plt.fill(defpoints[hull.vertices,0], defpoints[hull.vertices,1],c=cor, alpha=0.1,hatch='/')
-    plot_scatter_df(ação_certa,'#00FF79',adjust=False)
+    plot_scatter_df(ação_certa,'#00FF79',adjust=True)
     plot_scatter_df(ação_errada,'#FD2B2C')
 
       
