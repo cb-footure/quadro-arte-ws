@@ -443,7 +443,7 @@ if choice == 'Plotagem campinho':
             #Draw a black line between each
                 plt.plot(defpoints[simplex, 0], defpoints[simplex, 1], 'r-',color=cor)
             plt.fill(defpoints[hull.vertices,0], defpoints[hull.vertices,1],c=cor, alpha=0.1,hatch='/')
-    plot_scatter_df(ação_certa,'#00FF79',adjust=True)
+    plot_scatter_df(ação_certa,'#00FF79',adjust=False)
     plot_scatter_df(ação_errada,'#FD2B2C')
 
       
