@@ -94,6 +94,12 @@ if choice == 'Plotagem campinho':
       lista_campeonato=list(df['match_competition'].unique())
       botao_campeonato=st.multiselect('Selecione a temporada desejada',lista_campeonato)
       df=df[df['match_competition'].isin(botao_campeonato)].reset_index(drop=True)
+      
+   opcao_jogo=st.checkbox('Selecionar por jogo',value=False)
+   if opcao_jogo == True:
+      lista_jogo=list(df['match_name'])
+      botao_jogo=st.multiselect('Selecione a partida',lista_jogo)
+      df=df[df['match_name'].isin(botao_jogo)].reset_index(drop=True)
    df_jogador=df
    df_jogador
    match_list = [ ]
