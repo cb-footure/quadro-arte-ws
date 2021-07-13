@@ -40,7 +40,13 @@ st.title('Footure Plot')
 menu=['Plotagem campinho','Quadro de stats jogador por time']
 choice=st.sidebar.selectbox('Menu',menu)
 if choice == 'Plotagem campinho':
-   token=st.text_input('Token')
+#    token=st.text_input('Token')
+   headers = {
+    'accept': 'application/json',
+   }
+   r = requests.get('https://footure-fast-api.herokuapp.com/tk/', headers=headers)
+   data=json.loads(r.text)
+   token=data['token']
    fr=st.text_input('From (2021-01-01)')
    to=st.text_input('To (2021-12-31)')
    player=st.text_input('ID jogador')
