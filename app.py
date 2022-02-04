@@ -1221,7 +1221,7 @@ if choice == 'Plotagem campinho':
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
           if opcao_traduzir == True:
-               msg = f'Successful'
+               msg = f'Success'
           else:
                msg = f'Certo'
           draw = ImageDraw.Draw(arte)
@@ -1263,7 +1263,7 @@ if choice == 'Plotagem campinho':
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
           if opcao_traduzir == True:
-               msg = f'Successful'
+               msg = f'Success'
           else:
                msg = f'Certo'
           draw = ImageDraw.Draw(arte)
@@ -1374,7 +1374,7 @@ if choice == 'Plotagem campinho':
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
           if opcao_traduzir == True:
-               msg = f'Successful'
+               msg = f'Success'
           else:
                msg = f'Certo'
           draw = ImageDraw.Draw(arte)
@@ -1416,7 +1416,7 @@ if choice == 'Plotagem campinho':
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
           if opcao_traduzir == True:
-               msg = f'Successful'
+               msg = f'Success'
           else:
                msg = f'Certo'
           draw = ImageDraw.Draw(arte)
@@ -1536,7 +1536,7 @@ if choice == 'Plotagem campinho':
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
           if opcao_traduzir == True:
-               msg = f'Unsuccessful'
+               msg = f'Unsuccess'
           else:
                msg = f'Errado'
           draw = ImageDraw.Draw(arte)
@@ -1727,7 +1727,7 @@ if choice == 'Plotagem campinho':
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
           if opcao_traduzir == True:
-               msg = f'Successful'
+               msg = f'Success'
           else:
                msg = f'Certo'
           draw = ImageDraw.Draw(arte)
@@ -2045,7 +2045,7 @@ if choice == 'Plotagem campinho':
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
           if opcao_traduzir == True:
-               msg = f'Successful'
+               msg = f'Success'
           else:
                msg = f'Certo'
           draw = ImageDraw.Draw(arte)
