@@ -47,8 +47,8 @@ if choice == 'Plotagem campinho':
    r = requests.get('https://footure-fast-api.herokuapp.com/tk/', headers=headers)
    data=json.loads(r.text)
    token=data['token']
-#    fr=st.text_input('From (2021-01-01)')
-#    to=st.text_input('To (2021-12-31)')
+   fr=st.text_input('From (2021-01-01)')
+   to=st.text_input('To (2021-12-31)')
    player=st.text_input('ID jogador')
    
    def get_binary_file_downloader_html(bin_file, file_label='File'):
