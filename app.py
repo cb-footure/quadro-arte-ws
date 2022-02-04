@@ -47,8 +47,8 @@ if choice == 'Plotagem campinho':
    r = requests.get('https://footure-fast-api.herokuapp.com/tk/', headers=headers)
    data=json.loads(r.text)
    token=data['token']
-   fr=st.text_input('From (2021-01-01)')
-   to=st.text_input('To (2021-12-31)')
+#    fr=st.text_input('From (2021-01-01)')
+#    to=st.text_input('To (2021-12-31)')
    player=st.text_input('ID jogador')
    
    def get_binary_file_downloader_html(bin_file, file_label='File'):
@@ -996,6 +996,7 @@ if choice == 'Plotagem campinho':
       temporada= st.text_input('Digite a temporada')
       minutos_em_campo = minutos_df['Minutos em campo'][0].astype('int')
       space=st.number_input('Digite um número de espaçamento entre 800 e 1400')
+      opcao_traduzir=st.checkbox('Deseja Traduzir',value=False)
 
       def arte_posicoes(df):
         posição=df['primary_position'][0]
@@ -1153,11 +1154,17 @@ if choice == 'Plotagem campinho':
           im = im.resize((1331,2047))
           arte.paste(im,(305,1100))
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Onde recebe a bola'
+          if opcao_traduzir == True:
+               msg = f'Where receives the ball'
+          else:
+               msg = f'Onde recebe a bola'
           draw = ImageDraw.Draw(arte)
           draw.text((305,930),msg, fill='white',spacing= 30,font=font)
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{minutos_em_campo} Minutos em campo'
+          if opcao_traduzir == True:
+               msg = f'{minutos_em_campo} Minutes Played'
+          else:
+               msg = f'{minutos_em_campo} Minutos em campo'
           draw = ImageDraw.Draw(arte)
           draw.text((305,3200),msg, fill='white',spacing= 20,font=font)
           #----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1169,7 +1176,10 @@ if choice == 'Plotagem campinho':
           arte.paste(im,(2300,1030))
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Cobertura Defensiva'
+          if opcao_traduzir == True:
+               msg = f'Covering Depth'
+          else:
+               msg = f'Cobertura Defensiva'
           draw = ImageDraw.Draw(arte)
           draw.text((2370,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1186,28 +1196,43 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{duelos_1_x_1} Duelos 1x1 ganhos'
+          if opcao_traduzir == True:
+               msg = f'{duelos_1_x_1} Successful 1vs1 duels'
+          else:
+               msg = f'{duelos_1_x_1} Duelos 1x1 ganhos'
           draw = ImageDraw.Draw(arte)
           draw.text((2350,3480),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{interceptacoes} Interceptações'
+          if opcao_traduzir == True:
+               msg = f'{interceptacoes} Interceptions'
+          else: 
+               msg = f'{interceptacoes} Interceptações'
           draw = ImageDraw.Draw(arte)
           draw.text((2350,3580),msg, fill='white',spacing= 30,font=font)
-
-          msg = f'{desarmes} Desarmes'
+          
+          if opcao_traduzir == True:
+               msg = f'{desarmes} Tackles'
+          else:
+               msg = f'{desarmes} Desarmes'
           draw = ImageDraw.Draw(arte)
           draw.text((2350,3680),msg, fill='white',spacing= 30,font=font)
 
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Certo'
+          if opcao_traduzir == True:
+               msg = f'Successful'
+          else:
+               msg = f'Certo'
           draw = ImageDraw.Draw(arte)
           draw.text((2500,3250),msg, fill='white',spacing= 30,font=font)
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Errado'
+          if opcao_traduzir == True:
+               msg = f'Unsuccessful'
+          else:
+               msg = f'Errado'
           draw = ImageDraw.Draw(arte)
           draw.text((3050,3250),msg, fill='white',spacing= 30,font=font)
 
@@ -1222,7 +1247,10 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Passes Progressivos'
+          if opcao_traduzir == True:
+               msg = f'Progressive Passes'
+          else:  
+               msg = f'Passes Progressivos'
           draw = ImageDraw.Draw(arte)
           draw.text((4620,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1234,13 +1262,19 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Certo'
+          if opcao_traduzir == True:
+               msg = f'Successful'
+          else:
+               msg = f'Certo'
           draw = ImageDraw.Draw(arte)
           draw.text((4800,3250),msg, fill='white',spacing= 30,font=font)
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Errado'
+          if opcao_traduzir == True:
+               msg = f'Unsuccessful'
+          else:
+               msg = f'Errado'
           draw = ImageDraw.Draw(arte)
           draw.text((5330,3250),msg, fill='white',spacing= 30,font=font)
 
@@ -1249,7 +1283,11 @@ if choice == 'Plotagem campinho':
           draw.line((4600,3400,6000, 3400), fill='white', width=3) 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{progressivo_por_passe}% Passes progressivos/passe'
+          if opcao_traduzir == True:
+               msg = f'{progressivo_por_passe}% Progressive passes/passes'
+          else:  
+               msg = f'{progressivo_por_passe}% Passes progressivos/passe'
+          
           draw = ImageDraw.Draw(arte)
           draw.text((4600,3480),msg, fill='white',spacing= 30,font=font)
           arte.save(f'quadro_{jogador}.png',quality=95,bbox_inches = "tight",facecolor='#2C2B2B')
@@ -1266,14 +1304,20 @@ if choice == 'Plotagem campinho':
           
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Onde recebe a bola'
+          if opcao_traduzir == True:
+               msg = f'Where receives the ball'
+          else:
+               msg = f'Onde recebe a bola'
           draw = ImageDraw.Draw(arte)
           draw.text((305,930),msg, fill='white',spacing= 30,font=font)
 
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{minutos_em_campo} Minutos em campo'
+          if opcao_traduzir == True:
+               msg = f'{minutos_em_campo} Minutes Played'
+          else:
+               msg = f'{minutos_em_campo} Minutos em campo'
           draw = ImageDraw.Draw(arte)
           draw.text((305,3200),msg, fill='white',spacing= 20,font=font)
           #----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1285,7 +1329,10 @@ if choice == 'Plotagem campinho':
           arte.paste(im,(2300,1030))
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Cobertura Defensiva'
+          if opcao_traduzir == True:
+               msg = f'Covering Depth'
+          else:
+               msg = f'Cobertura Defensiva'
           draw = ImageDraw.Draw(arte)
           draw.text((2370,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1302,28 +1349,43 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{duelos_1_x_1} Duelos 1x1 ganhos'
+          if opcao_traduzir == True:
+               msg = f'{duelos_1_x_1} Successful 1vs1 duels'
+          else:
+               msg = f'{duelos_1_x_1} Duelos 1x1 ganhos'
           draw = ImageDraw.Draw(arte)
           draw.text((2350,3480),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{interceptacoes} Interceptações'
+          if opcao_traduzir == True:
+               msg = f'{interceptacoes} Interceptions'
+          else: 
+               msg = f'{interceptacoes} Interceptações'
           draw = ImageDraw.Draw(arte)
           draw.text((2350,3580),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{desarmes} Desarmes'
+          if opcao_traduzir == True:
+               msg = f'{desarmes} Tackles'
+          else:
+               msg = f'{desarmes} Desarmes'
           draw = ImageDraw.Draw(arte)
           draw.text((2350,3680),msg, fill='white',spacing= 30,font=font)
 
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Certo'
+          if opcao_traduzir == True:
+               msg = f'Successful'
+          else:
+               msg = f'Certo'
           draw = ImageDraw.Draw(arte)
           draw.text((2500,3250),msg, fill='white',spacing= 30,font=font)
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Errado'
+          if opcao_traduzir == True:
+               msg = f'Unsuccessful'
+          else:
+               msg = f'Errado'
           draw = ImageDraw.Draw(arte)
           draw.text((3050,3250),msg, fill='white',spacing= 30,font=font)
 
@@ -1338,7 +1400,10 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Cruzamentos'
+          if opcao_traduzir == True:
+               msg = f'Crossing'
+          else:  
+               msg = f'Crossing'
           draw = ImageDraw.Draw(arte)
           draw.text((4620,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1350,13 +1415,19 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Certo'
+          if opcao_traduzir == True:
+               msg = f'Successful'
+          else:
+               msg = f'Certo'
           draw = ImageDraw.Draw(arte)
           draw.text((4800,2250),msg, fill='white',spacing= 30,font=font)
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Errado'
+          if opcao_traduzir == True:
+               msg = f'Unsuccessful'
+          else:
+               msg = f'Errado'
           draw = ImageDraw.Draw(arte)
           draw.text((5330,2250),msg, fill='white',spacing= 30,font=font)
 
@@ -1365,7 +1436,10 @@ if choice == 'Plotagem campinho':
           draw.line((4600,2460,6000, 2460), fill='white', width=3) 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{cruzamentos_certos_porcentagem}% de cruzamento certos'
+          if opcao_traduzir == True:
+               msg = f'{cruzamentos_certos_porcentagem}% of successful crosses'
+          else:  
+               msg = f'{cruzamentos_certos_porcentagem}% de cruzamento certos'
           draw = ImageDraw.Draw(arte)
           draw.text((4600,2520),msg, fill='white',spacing= 30,font=font)
 
@@ -1383,14 +1457,20 @@ if choice == 'Plotagem campinho':
           
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Onde recebe a bola'
+          if opcao_traduzir == True:
+               msg = f'Where receives the ball'
+          else:
+               msg = f'Onde recebe a bola'
           draw = ImageDraw.Draw(arte)
           draw.text((305,930),msg, fill='white',spacing= 30,font=font)
 
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{minutos_em_campo} Minutos em campo'
+          if opcao_traduzir == True:
+               msg = f'{minutos_em_campo} Minutes Played'
+          else:
+               msg = f'{minutos_em_campo} Minutos em campo'
           draw = ImageDraw.Draw(arte)
           draw.text((305,3200),msg, fill='white',spacing= 20,font=font)
           #----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1402,7 +1482,10 @@ if choice == 'Plotagem campinho':
           arte.paste(im,(2300,1030))
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Cobertura Defensiva'
+          if opcao_traduzir == True:
+               msg = f'Covering Depth'
+          else:
+               msg = f'Cobertura Defensiva'
           draw = ImageDraw.Draw(arte)
           draw.text((2370,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1419,28 +1502,43 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{duelos_1_x_1} Duelos 1x1 ganhos'
+          if opcao_traduzir == True:
+               msg = f'{duelos_1_x_1} Successful 1vs1 duels'
+          else:
+               msg = f'{duelos_1_x_1} Duelos 1x1 ganhos'
           draw = ImageDraw.Draw(arte)
           draw.text((2350,3480),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{interceptacoes} Interceptações'
+          if opcao_traduzir == True:
+               msg = f'{interceptacoes} Interceptions'
+          else: 
+               msg = f'{interceptacoes} Interceptações'
           draw = ImageDraw.Draw(arte)
           draw.text((2350,3580),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{desarmes} Desarmes'
+          if opcao_traduzir == True:
+               msg = f'{desarmes} Tackles'
+          else:
+               msg = f'{desarmes} Desarmes'
           draw = ImageDraw.Draw(arte)
           draw.text((2350,3680),msg, fill='white',spacing= 30,font=font)
 
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Certo'
+          if opcao_traduzir == True:
+               msg = f'Successful'
+          else:
+               msg = f'Certo'
           draw = ImageDraw.Draw(arte)
           draw.text((2500,3250),msg, fill='white',spacing= 30,font=font)
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Errado'
+          if opcao_traduzir == True:
+               msg = f'Unsuccessful'
+          else:
+               msg = f'Errado'
           draw = ImageDraw.Draw(arte)
           draw.text((3050,3250),msg, fill='white',spacing= 30,font=font)
 
@@ -1455,7 +1553,10 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Cruzamentos'
+          if opcao_traduzir == True:
+               msg = f'Crossing'
+          else:  
+               msg = f'Crossing'
           draw = ImageDraw.Draw(arte)
           draw.text((4620,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1467,7 +1568,10 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Certo'
+          if opcao_traduzir == True:
+               msg = f'Successful'
+          else:
+               msg = f'Certo'
           draw = ImageDraw.Draw(arte)
           draw.text((4800,2250),msg, fill='white',spacing= 30,font=font)
 
@@ -1482,7 +1586,10 @@ if choice == 'Plotagem campinho':
           draw.line((4600,2460,6000, 2460), fill='white', width=3) 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{cruzamentos_certos_porcentagem}% de cruzamento certos'
+          if opcao_traduzir == True:
+               msg = f'{cruzamentos_certos_porcentagem}% of successful crosses'
+          else:  
+               msg = f'{cruzamentos_certos_porcentagem}% de cruzamento certos'
           draw = ImageDraw.Draw(arte)
           draw.text((4600,2520),msg, fill='white',spacing= 30,font=font)
 
@@ -1501,14 +1608,20 @@ if choice == 'Plotagem campinho':
           
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Onde recebe a bola'
+          if opcao_traduzir == True:
+               msg = f'Where receives the ball'
+          else:
+               msg = f'Onde recebe a bola'
           draw = ImageDraw.Draw(arte)
           draw.text((305,930),msg, fill='white',spacing= 30,font=font)
 
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{minutos_em_campo} Minutos em campo'
+          if opcao_traduzir == True:
+               msg = f'{minutos_em_campo} Minutes Played'
+          else:
+               msg = f'{minutos_em_campo} Minutos em campo'
           draw = ImageDraw.Draw(arte)
           draw.text((305,3200),msg, fill='white',spacing= 20,font=font)
           #------------------------------------------------------------------------------
@@ -1522,7 +1635,10 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Cobertura Defensiva'
+          if opcao_traduzir == True:
+               msg = f'Covering Depth'
+          else:
+               msg = f'Cobertura Defensiva'
           draw = ImageDraw.Draw(arte)
           draw.text((1780,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1536,15 +1652,24 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{duelos_1_x_1} Duelos 1x1 ganhos'
+          if opcao_traduzir == True:
+               msg = f'{duelos_1_x_1} Successful 1vs1 duels'
+          else:
+               msg = f'{duelos_1_x_1} Duelos 1x1 ganhos'
           draw = ImageDraw.Draw(arte)
           draw.text((1780,3480),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{interceptacoes} Interceptações'
+          if opcao_traduzir == True:
+               msg = f'{interceptacoes} Interceptions'
+          else: 
+               msg = f'{interceptacoes} Interceptações'
           draw = ImageDraw.Draw(arte)
           draw.text((1780,3580),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{desarmes} Desarmes'
+          if opcao_traduzir == True:
+               msg = f'{desarmes} Tackles'
+          else:
+               msg = f'{desarmes} Desarmes'
           draw = ImageDraw.Draw(arte)
           draw.text((1780,3680),msg, fill='white',spacing= 30,font=font)
 
@@ -1560,7 +1685,10 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Passes mais Comuns'
+          if opcao_traduzir == True:
+               msg = f'Most common passes'
+          else:  
+               msg = f'Passes mais Comuns'
           draw = ImageDraw.Draw(arte)
           draw.text((3230,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1574,12 +1702,18 @@ if choice == 'Plotagem campinho':
           arte.paste(im,(4600,1040))
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Passes Progressivos'
+          if opcao_traduzir == True:
+               msg = f'Progressive Passes'
+          else:  
+               msg = f'Passes Progressivos'
           draw = ImageDraw.Draw(arte)
           draw.text((4680,930),msg, fill='white',spacing= 30,font=font)
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{progressivo_por_passe}% Passes progressivos/passes'
+          if opcao_traduzir == True:
+               msg = f'{progressivo_por_passe}% Progressive passes/passes'
+          else:  
+               msg = f'{progressivo_por_passe}% Passes progressivos/passe'
           draw = ImageDraw.Draw(arte)
           draw.text((4670,3480),msg, fill='white',spacing= 30,font=font)
 
@@ -1592,11 +1726,17 @@ if choice == 'Plotagem campinho':
           draw.line((4660,3400,6100, 3400), fill='white', width=3) 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Certo'
+          if opcao_traduzir == True:
+               msg = f'Successful'
+          else:
+               msg = f'Certo'
           draw = ImageDraw.Draw(arte)
           draw.text((4860,3250),msg, fill='white',spacing= 20,font=font)
           draw.text((1950,3250),msg, fill='white',spacing= 20,font=font)
-          msg = f'Errado'
+          if opcao_traduzir == True:
+               msg = f'Unsuccessful'
+          else:
+               msg = f'Errado'
           draw.text((5380,3250),msg, fill='white',spacing= 20,font=font)
           draw.text((2470,3250),msg, fill='white',spacing= 20,font=font)
 
@@ -1615,20 +1755,30 @@ if choice == 'Plotagem campinho':
           
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Onde recebe a bola'
+          if opcao_traduzir == True:
+               msg = f'Where receives the ball'
+          else:
+               msg = f'Onde recebe a bola'
           draw = ImageDraw.Draw(arte)
           draw.text((305,930),msg, fill='white',spacing= 30,font=font)
 
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{minutos_em_campo} Minutos em campo'
+          if opcao_traduzir == True:
+               msg = f'{minutos_em_campo} Minutes Played'
+          else:
+               msg = f'{minutos_em_campo} Minutos em campo'
           draw = ImageDraw.Draw(arte)
           draw.text((305,3200),msg, fill='white',spacing= 20,font=font)
 
           #Passe finalização
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Passes para finalização'
+          if opcao_traduzir == True:
+               msg = f'Passes leading to shot'
+          else:  
+               msg = f'Passes para finalização'
+          
           draw = ImageDraw.Draw(arte)
           draw.text((1780,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1646,13 +1796,19 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Chave'
+          if opcao_traduzir == True:
+               msg = f'Key pass'
+          else:  
+               msg = f'Chave'
           draw = ImageDraw.Draw(arte)
           draw.text((1970,2250),msg, fill='white',spacing= 30,font=font)
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Assistência'
+          if opcao_traduzir == True:
+               msg = f'Assists'
+          else:  
+               msg = f'Assistência'
           draw = ImageDraw.Draw(arte)
           draw.text((2470,2250),msg, fill='white',spacing= 30,font=font)
 
@@ -1661,11 +1817,17 @@ if choice == 'Plotagem campinho':
           draw.line((1780,2450,3100, 2450), fill='white', width=3) 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{passe_chave} Passes chave'
+          if opcao_traduzir == True:
+               msg = f'{passe_chave}Key pass'
+          else:
+               msg = f'{passe_chave} Passes chave'
           draw = ImageDraw.Draw(arte)
           draw.text((1780,2520),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{assistencia} Assistências'
+          if opcao_traduzir == True:
+               msg = f'{assistencia} Assists'
+          else:
+               msg = f'{assistencia} Assistências'
           draw = ImageDraw.Draw(arte)
           draw.text((1780,2620),msg, fill='white',spacing= 30,font=font)
 
@@ -1683,7 +1845,10 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Passes mais Comuns'
+          if opcao_traduzir == True:
+               msg = f'Most common passes'
+          else:  
+               msg = f'Passes mais Comuns'
           draw = ImageDraw.Draw(arte)
           draw.text((3230,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1697,7 +1862,11 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Qualidade das chances'
+          if opcao_traduzir == True:
+               msg = f'Shot quality'
+          else:  
+               msg = f'Qualidade das chances'
+          
           draw = ImageDraw.Draw(arte)
           draw.text((4680,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1720,12 +1889,19 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{chute_no_alvo} Chutes no alvo'
+          if opcao_traduzir == True:
+               msg = f'Shots on target'
+          else:  
+               msg = f'{chute_no_alvo} Chutes no alvo'
+          
           draw = ImageDraw.Draw(arte)
           draw.text((4660,2630),msg, fill='white',spacing= 30,font=font)
 
-
-          msg = f'{gols} Gols'
+          if opcao_traduzir == True:
+               msg = f'{gols} Goals'
+          else:  
+               msg = f'{gols} Gols'
+          
           draw = ImageDraw.Draw(arte)
           draw.text((4660,2730),msg, fill='white',spacing= 30,font=font)
 
@@ -1734,12 +1910,18 @@ if choice == 'Plotagem campinho':
           draw = ImageDraw.Draw(arte)
           draw.text((5500,2630),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{xg_por_chute} xG por chute'
+          if opcao_traduzir == True:
+               msg = f'{xg_por_chute} xG per shot'
+          else:  
+               msg = f'{xg_por_chute} xG por chute'
           draw = ImageDraw.Draw(arte)
           draw.text((5500,2730),msg, fill='white',spacing= 30,font=font)
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Maior qualidade das chances'
+          if opcao_traduzir == True:
+               msg = f'Better shot quality'
+          else:  
+               msg = f'Maior qualidade das chances'
           draw = ImageDraw.Draw(arte)
           draw.text((4660,2400),msg, fill='white',spacing= 30,font=font)
           msg = f'Gol'
@@ -1759,20 +1941,29 @@ if choice == 'Plotagem campinho':
           
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Onde recebe a bola'
+          if opcao_traduzir == True:
+               msg = f'Where receives the ball'
+          else:
+               msg = f'Onde recebe a bola'
           draw = ImageDraw.Draw(arte)
           draw.text((305,930),msg, fill='white',spacing= 30,font=font)
 
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{minutos_em_campo} Minutos em campo'
+          if opcao_traduzir == True:
+               msg = f'{minutos_em_campo} Minutes Played'
+          else:
+               msg = f'{minutos_em_campo} Minutos em campo'
           draw = ImageDraw.Draw(arte)
           draw.text((305,3200),msg, fill='white',spacing= 20,font=font)
 
           #Passe finalização
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Passes para finalização'
+          if opcao_traduzir == True:
+               msg = f'Passes leading to shot'
+          else:  
+               msg = f'Passes para finalização'
           draw = ImageDraw.Draw(arte)
           draw.text((1780,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1790,13 +1981,19 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Chave'
+          if opcao_traduzir == True:
+               msg = f'Key pass'
+          else:  
+               msg = f'Chave'
           draw = ImageDraw.Draw(arte)
           draw.text((1970,2250),msg, fill='white',spacing= 30,font=font)
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Assistência'
+          if opcao_traduzir == True:
+               msg = f'Assists'
+          else:  
+               msg = f'Assistência'
           draw = ImageDraw.Draw(arte)
           draw.text((2470,2250),msg, fill='white',spacing= 30,font=font)
 
@@ -1805,11 +2002,17 @@ if choice == 'Plotagem campinho':
           draw.line((1780,2450,3100, 2450), fill='white', width=3) 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{passe_chave} Passes chave'
+          if opcao_traduzir == True:
+               msg = f'{passe_chave}Key pass'
+          else:
+               msg = f'{passe_chave} Passes chave'
           draw = ImageDraw.Draw(arte)
           draw.text((1780,2520),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{assistencia} Assistências'
+          if opcao_traduzir == True:
+               msg = f'{assistencia} Assists'
+          else:
+               msg = f'{assistencia} Assistências'
           draw = ImageDraw.Draw(arte)
           draw.text((1780,2620),msg, fill='white',spacing= 30,font=font)
 
@@ -1827,7 +2030,10 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Cruzamentos'
+          if opcao_traduzir == True:
+               msg = f'Crossing'
+          else:  
+               msg = f'Crossing'
           draw = ImageDraw.Draw(arte)
           draw.text((3230,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1838,17 +2044,26 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Certo'
+          if opcao_traduzir == True:
+               msg = f'Successful'
+          else:
+               msg = f'Certo'
           draw = ImageDraw.Draw(arte)
           draw.text((3470,2250),msg, fill='white',spacing= 20,font=font)
-          msg = f'Errado'
+          if opcao_traduzir == True:
+               msg = f'Unsuccessful'
+          else:
+               msg = f'Errado'
           draw.text((3980,2250),msg, fill='white',spacing= 20,font=font)
 
           draw = ImageDraw.Draw(arte)
           draw.line((3230,2450,4540, 2450), fill='white', width=3) 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{cruzamentos_certos_porcentagem}% de cruzamentos certos'
+          if opcao_traduzir == True:
+               msg = f'{cruzamentos_certos_porcentagem}% of successful crosses'
+          else:  
+               msg = f'{cruzamentos_certos_porcentagem}% de cruzamento certos'
           draw = ImageDraw.Draw(arte)
           draw.text((3230,2530),msg, fill='white',spacing= 30,font=font)
 
@@ -1862,7 +2077,10 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Qualidade das chances'
+          if opcao_traduzir == True:
+               msg = f'Shot quality'
+          else:  
+               msg = f'Qualidade das chances'
           draw = ImageDraw.Draw(arte)
           draw.text((4680,930),msg, fill='white',spacing= 30,font=font)
 
@@ -1885,12 +2103,18 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{chute_no_alvo} Chutes no alvo'
+          if opcao_traduzir == True:
+               msg = f'Shots on target'
+          else:  
+               msg = f'{chute_no_alvo} Chutes no alvo'
           draw = ImageDraw.Draw(arte)
           draw.text((4660,2630),msg, fill='white',spacing= 30,font=font)
 
 
-          msg = f'{gols} Gols'
+          if opcao_traduzir == True:
+               msg = f'{gols} Goals'
+          else:  
+               msg = f'{gols} Gols'
           draw = ImageDraw.Draw(arte)
           draw.text((4660,2730),msg, fill='white',spacing= 30,font=font)
 
@@ -1899,12 +2123,18 @@ if choice == 'Plotagem campinho':
           draw = ImageDraw.Draw(arte)
           draw.text((5500,2630),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{xg_por_chute} xG por chute'
+          if opcao_traduzir == True:
+               msg = f'{xg_por_chute} xG per shot'
+          else:  
+               msg = f'{xg_por_chute} xG por chute'
           draw = ImageDraw.Draw(arte)
           draw.text((5500,2730),msg, fill='white',spacing= 30,font=font)
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Maior qualidade das chances'
+          if opcao_traduzir == True:
+               msg = f'Better shot quality'
+          else:  
+               msg = f'Maior qualidade das chances'
           draw = ImageDraw.Draw(arte)
           draw.text((4660,2400),msg, fill='white',spacing= 30,font=font)
           msg = f'Gol'
@@ -1924,11 +2154,17 @@ if choice == 'Plotagem campinho':
           
 
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Onde recebe a bola'
+          if opcao_traduzir == True:
+               msg = f'Where receives the ball'
+          else:
+               msg = f'Onde recebe a bola'
           draw = ImageDraw.Draw(arte)
           draw.text((305,930),msg, fill='white',spacing= 30,font=font)
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{minutos_em_campo} Minutos em campo'
+          if opcao_traduzir == True:
+               msg = f'{minutos_em_campo} Minutes Played'
+          else:
+               msg = f'{minutos_em_campo} Minutos em campo'
           draw = ImageDraw.Draw(arte)
           draw.text((305,3200),msg, fill='white',spacing= 20,font=font)
           #xg
@@ -1938,7 +2174,10 @@ if choice == 'Plotagem campinho':
           im = im.resize((1450,1150))
           arte.paste(im,(2300,1030))
           font = ImageFont.truetype('Camber/Camber-Rg.ttf',120)
-          msg = f'Qualidade das chances'
+          if opcao_traduzir == True:
+               msg = f'Shot quality'
+          else:  
+               msg = f'Qualidade das chances'
           draw = ImageDraw.Draw(arte)
           draw.text((2370,930),msg, fill='white',spacing= 30,font=font)
           ##legenda gol
@@ -1962,7 +2201,11 @@ if choice == 'Plotagem campinho':
           arte.paste(im,(2350,2200))
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Maior qualidade das chances'
+          if opcao_traduzir == True:
+               msg = f'Better shot quality'
+          else:  
+               msg = f'Maior qualidade das chances'
+          
           draw = ImageDraw.Draw(arte)
           draw.text((2380,2400),msg, fill='white',spacing= 30,font=font)
 
@@ -1971,12 +2214,18 @@ if choice == 'Plotagem campinho':
           draw.line((2350,2580,3700, 2580), fill='white', width=3) #(x_final,y_final,x_inicial,y_inicial)
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{chute_no_alvo} Chutes no alvo'
+          if opcao_traduzir == True:
+               msg = f'Shots on target'
+          else:  
+               msg = f'{chute_no_alvo} Chutes no alvo'
           draw = ImageDraw.Draw(arte)
           draw.text((2380,2630),msg, fill='white',spacing= 30,font=font)
 
 
-          msg = f'{gols} Gols'
+          if opcao_traduzir == True:
+               msg = f'{gols} Goals'
+          else:  
+               msg = f'{gols} Gols'
           draw = ImageDraw.Draw(arte)
           draw.text((2380,2730),msg, fill='white',spacing= 30,font=font)
 
@@ -1985,7 +2234,11 @@ if choice == 'Plotagem campinho':
           draw = ImageDraw.Draw(arte)
           draw.text((3240,2630),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{xg_por_chute} xG por chute'
+          if opcao_traduzir == True:
+               msg = f'{xg_por_chute} xG per shot'
+          else:  
+               msg = f'{xg_por_chute} xG por chute'
+          
           draw = ImageDraw.Draw(arte)
           draw.text((3240,2730),msg, fill='white',spacing= 30,font=font)
 
@@ -1998,7 +2251,10 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',120)
-          msg = f'Passes para finalização'
+          if opcao_traduzir == True:
+               msg = f'Passes leading to shot'
+          else:  
+               msg = f'Passes para finalização'
           draw = ImageDraw.Draw(arte)
           draw.text((4620,930),msg, fill='white',spacing= 30,font=font)
 
@@ -2010,13 +2266,20 @@ if choice == 'Plotagem campinho':
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Chave'
+          if opcao_traduzir == True:
+               msg = f'Key pass'
+          else:  
+               msg = f'Chave'
           draw = ImageDraw.Draw(arte)
           draw.text((4800,2250),msg, fill='white',spacing= 30,font=font)
 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',90)
-          msg = f'Assistência'
+          if opcao_traduzir == True:
+               msg = f'Assists'
+          else:  
+               msg = f'Assistência'
+          
           draw = ImageDraw.Draw(arte)
           draw.text((5330,2250),msg, fill='white',spacing= 30,font=font)
 
@@ -2025,11 +2288,18 @@ if choice == 'Plotagem campinho':
           draw.line((4600,2460,6000, 2460), fill='white', width=3) 
 
           font = ImageFont.truetype('Camber/Camber-RgItalic.ttf',70)
-          msg = f'{passe_chave} Passes chave'
+          if opcao_traduzir == True:
+               msg = f'{passe_chave}Key pass'
+          else:
+               msg = f'{passe_chave} Passes chave'
           draw = ImageDraw.Draw(arte)
           draw.text((4600,2520),msg, fill='white',spacing= 30,font=font)
 
-          msg = f'{assistencia} Assistências'
+          if opcao_traduzir == True:
+               msg = f'{assistencia} Assists'
+          else:
+               msg = f'{assistencia} Assistências'
+          
           draw = ImageDraw.Draw(arte)
           draw.text((4600,2620),msg, fill='white',spacing= 30,font=font)
 
