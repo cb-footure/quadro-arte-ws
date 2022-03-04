@@ -1558,7 +1558,7 @@ if choice == 'Plotagem campinho':
           if opcao_traduzir == True:
                msg = f'Crossing'
           else:  
-               msg = f'Crossing'
+               msg = f'Cruzamento'
           draw = ImageDraw.Draw(arte)
           draw.text((4620,930),msg, fill='white',spacing= 30,font=font)
 
